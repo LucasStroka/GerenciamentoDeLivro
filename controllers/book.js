@@ -62,10 +62,29 @@ const deleteBook = (req, res) => {
     res.status(200).json(`Livro Deletado ID: ${id}`)
 }
 
+const searchBook = (req, res) => {
+    const { title, author, year, genre } = req.query;
+
+    let filteredBooks = dataBaseBooks.book;
+
+    if(title) {
+        filteredBooks = filteredBooks.filter(d => d.title.trim().toLowerCase() === title.trim().toLowerCase())
+    }
+    if (author) {
+        filteredBooks = filteredBooks.filter(d => d.author.trim().toLowerCase() === author.trim().toLowerCase())
+    }
+    if (year) {
+        filteredBooks = filteredBooks.filter(d => d.year === parseInt(year))
+    } 
+    res.json(filteredBooks);
+};
+
+
 
 module.exports = {
     createBook,
     getBooks,
     updateBook,
     deleteBook,
+    searchBook
 }

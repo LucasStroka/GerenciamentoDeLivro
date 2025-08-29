@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 const bookController = require('../controllers/book')
 
-
 // http://localhost:3000/book/
 // Route para Criar livros
 router.post('/', bookController.createBook)
@@ -18,5 +17,9 @@ router.put('/:id', bookController.updateBook)
 // http://localhost:3000/book/:id
 // Route para Deletar Livros
 router.delete('/:id', bookController.deleteBook)
+
+// http://localhost:3000/book/search
+// Route para Procurar Livros
+router.get('/search', bookController.searchBook)
 
 module.exports = router;
